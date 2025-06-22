@@ -118,7 +118,7 @@ nav {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--heading-color);
-    margin-right: auto; 
+    margin-right: auto;
 }
 
 nav ul {
@@ -264,7 +264,7 @@ nav ul li a:focus,
 .about-content {
     display: flex;
     align-items: center; /* PERBAIKAN: Pusatkan item secara vertikal untuk simetri foto */
-    gap: 2rem; 
+    gap: 2rem;
 }
 
 .profile-photo {
@@ -329,7 +329,7 @@ nav ul li a:focus,
     gap: 0.75rem;
 }
 
-.skill-category ul li i {
+.skill-category ul li span { /* PERBAIKAN: Mengubah 'i' menjadi 'span' */
     color: var(--primary-color);
     font-size: 1.2rem;
     width: 20px;
@@ -532,7 +532,7 @@ body.dark-theme .portfolio-item .github-link:hover {
 
 #contact > p {
     text-align: center;
-    margin-bottom: 1.5rem; 
+    margin-bottom: 1.5rem;
 }
 
 .contact-info {
@@ -553,7 +553,7 @@ body.dark-theme .portfolio-item .github-link:hover {
     color: var(--text-color);
 }
 
-.contact-info p i {
+.contact-info p span { /* PERBAIKAN: Mengubah 'i' menjadi 'span' */
     color: var(--primary-color);
     font-size: 1.3rem;
     width: 20px;
@@ -585,7 +585,7 @@ body.dark-theme .portfolio-item .github-link:hover {
 #contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25); 
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
 }
 
 #contact-form button {
@@ -667,7 +667,7 @@ body.dark-theme .section-divider {
         justify-content: center;
         margin-right: 0;
     }
-    
+
     #theme-toggle {
         margin-left: 0;
         margin-top: 0.5rem;
@@ -676,11 +676,11 @@ body.dark-theme .section-divider {
     .about-content {
         flex-direction: column;
         align-items: center;
-        text-align: center; 
-        gap: 1.5rem; 
+        text-align: center;
+        gap: 1.5rem;
     }
     #about, #skills, #experience, #education, #portfolio, #contact {
-        padding: 2.5rem 1.5rem; 
+        padding: 2.5rem 1.5rem;
     }
     .skills-grid {
         grid-template-columns: 1fr;
