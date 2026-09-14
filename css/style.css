@@ -2,31 +2,32 @@
 
 /* --- Variabel Warna & Font Dasar --- */
 :root {
-    --primary-color: #007bff; /* TETAP BIRU UNTEMA TERANG */
-    --primary-hover-color: #0056b3; /* TETAP BIRU UNTUK TEMA TERANG */
-    --primary-color-rgb: 0, 123, 255; /* RGB dari #007bff */
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --primary-color-rgb: 0, 123, 255;
     --bg-color: #ffffff;
     --text-color: #333333;
     --heading-color: #111111;
     --card-bg-color: #f8f9fa;
     --section-bg-color: #f8f9fa;
     --border-color: #dee2e6;
-    --header-bg: rgba(255, 255, 255, 0.9);
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --header-bg: rgba(255, 255, 255, 0.92);
+    --shadow-color: rgba(0, 0, 0, 0.08);
     --font-family: 'Poppins', sans-serif;
 }
 
-body.dark-theme {
-    --primary-color: #00C853; /* Hijau yang lebih kalem (Material Design Green A700) */
-    --primary-hover-color: #00A344; /* Hijau yang sedikit lebih gelap untuk hover */
-    --primary-color-rgb: 0, 200, 83; /* PERBAIKAN: Menggunakan nama variabel yang sama untuk RGB di dark theme */
+body.dark-theme,
+html.dark-theme body {
+    --primary-color: #00C853;
+    --primary-hover-color: #00A344;
+    --primary-color-rgb: 0, 200, 83;
     --bg-color: #121212;
     --text-color: #e0e0e0;
     --heading-color: #ffffff;
     --card-bg-color: #1e1e1e;
-    --section-bg-color: #1a1a1a;
-    --border-color: #444444;
-    --header-bg: rgba(25, 25, 25, 0.9);
+    --section-bg-color: #181818;
+    --border-color: #333333;
+    --header-bg: rgba(20, 20, 20, 0.92);
     --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -39,6 +40,7 @@ body.dark-theme {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -47,6 +49,46 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Pastikan semua elemen teks tidak memunculkan kursor ketik */
+h1, h2, h3, h4, p, span, li, label, div, section, header, footer, article, main {
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Elemen interaktif tombol & tautan tetap pointer */
+a, button, .button, .button-small, #theme-toggle, .menu-toggle, .logo, .social-links a {
+    cursor: pointer;
+}
+
+/* Form input & textarea tetap bisa diketik normal */
+input, textarea {
+    cursor: text;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .container {
@@ -55,7 +97,7 @@ body {
     padding: 4rem 2rem;
 }
 
-h1, h2, h3, h4 { /* PERBAIKAN: Menambahkan h4 agar konsisten */
+h1, h2, h3, h4 {
     color: var(--heading-color);
     font-weight: 600;
     margin-bottom: 1rem;
@@ -64,16 +106,26 @@ h1, h2, h3, h4 { /* PERBAIKAN: Menambahkan h4 agar konsisten */
 h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
 }
 
 h3 {
     font-size: 1.75rem;
     margin-bottom: 1rem;
-    text-align: center; /* Default center, bisa di-override */
 }
 
-h4 { /* Untuk judul di dalam education/experience item */
+h4 {
     font-size: 1.25rem;
     color: var(--heading-color);
     margin-bottom: 0.5rem;
@@ -97,6 +149,7 @@ a:hover {
 header {
     background-color: var(--header-bg);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     position: fixed;
     width: 100%;
@@ -109,29 +162,37 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--heading-color);
-    margin-right: auto;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.logo:hover {
+    color: var(--primary-color);
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 1.5rem;
+    margin: 0;
 }
 
 nav ul li a {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-color);
     padding-bottom: 5px;
     position: relative;
+    transition: color 0.3s;
 }
 
 nav ul li a::after {
@@ -145,21 +206,23 @@ nav ul li a::after {
     transition: width 0.3s;
 }
 
-nav ul li a:hover::after {
-    width: 100%;
-}
-
-/* Gaya untuk highlight link navigasi aktif */
-nav ul li a.active {
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
+nav ul li a:hover::after,
 nav ul li a.active::after {
     width: 100%;
 }
 
-/* Gaya untuk Tombol Tema */
+nav ul li a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Tombol Tema */
 #theme-toggle {
     background: none;
     border: none;
@@ -168,33 +231,57 @@ nav ul li a.active::after {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 50%;
-    transition: background-color 0.3s, color 0.3s;
-    margin-left: 1.5rem;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(1.2rem + (0.5rem * 2));
-    height: calc(1.2rem + (0.5rem * 2));
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
 }
+
 #theme-toggle:hover {
+    background-color: var(--card-bg-color);
+    transform: rotate(15deg);
+}
+
+/* Tombol Hamburger Mobile */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    flex-shrink: 0;
+}
+
+.menu-toggle:hover {
     background-color: var(--card-bg-color);
 }
 
-/* Efek Fokus untuk Elemen Interaktif (Tombol, Link Navigasi, Input Form) */
-/* Menggunakan var(--primary-color-rgb) yang akan berubah di dark-theme */
-.button:focus,
-.button-small:focus,
-nav ul li a:focus,
-#theme-toggle:focus, /* Tambahkan theme-toggle di sini untuk efek fokus yang konsisten */
-#contact-form input:focus,
-#contact-form textarea:focus {
+/* Efek Fokus Aksesibilitas */
+.button:focus-visible,
+.button-small:focus-visible,
+nav ul li a:focus-visible,
+#contact-form input:focus-visible,
+#contact-form textarea:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgba(var(--primary-color-rgb), 0.2);
-    border-radius: 5px; /* Default untuk tombol, link, input */
+    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 5px rgba(var(--primary-color-rgb), 0.25);
+    border-radius: 5px;
 }
 
-#theme-toggle:focus { /* PERBAIKAN: Override untuk theme toggle agar tetap bulat */
+#theme-toggle:focus-visible,
+.menu-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 5px rgba(var(--primary-color-rgb), 0.25);
     border-radius: 50%;
 }
 
@@ -205,21 +292,28 @@ nav ul li a:focus,
     justify-content: center;
     text-align: center;
     min-height: 100vh;
-    padding: 0 2rem;
+    padding: 6rem 2rem 2rem;
+}
+
+.hero-content {
+    max-width: 750px;
+    animation: fadeInScale 0.8s ease-out forwards;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
 }
 
 .hero-content p {
     font-size: 1.2rem;
     max-width: 600px;
-    margin: 1rem auto 2rem;
+    margin: 0 auto 2rem;
+    color: var(--text-color);
 }
 
-/* Animasi Fade-in untuk Hero Content */
 @keyframes fadeInScale {
     from {
         opacity: 0;
@@ -231,48 +325,86 @@ nav ul li a:focus,
     }
 }
 
-.hero-content {
-    animation: fadeInScale 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-    opacity: 0;
-}
-
+/* Tombol */
 .button {
     background-color: var(--primary-color);
     color: #fff;
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px 28px;
+    border-radius: 6px;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     border: 1px solid var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .button:hover {
     background-color: var(--primary-hover-color);
     color: #fff;
     transform: translateY(-2px);
-    border-color: var(--primary-hover-color);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.button-small {
+    background-color: var(--primary-color);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s, border-color 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-small:hover {
+    background-color: var(--primary-hover-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.3);
+}
+
+/* Perbaikan Kontras Tombol pada Dark Theme (WCAG AAA) */
+body.dark-theme .button,
+body.dark-theme .button-small,
+body.dark-theme #contact-form button {
+    color: #101418;
+    font-weight: 600;
+}
+
+body.dark-theme .button:hover,
+body.dark-theme .button-small:hover,
+body.dark-theme #contact-form button:hover {
+    color: #101418;
 }
 
 /* --- Bagian Tentang Saya --- */
 #about {
     background-color: var(--section-bg-color);
-    padding: 4rem 2rem; /* Konsisten */
 }
 
 .about-content {
     display: flex;
-    align-items: center; /* PERBAIKAN: Pusatkan item secara vertikal untuk simetri foto */
-    gap: 2rem;
+    align-items: center;
+    gap: 3rem;
 }
 
 .profile-photo {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid var(--border-color);
+    box-shadow: 0 8px 24px var(--shadow-color);
     flex-shrink: 0;
 }
 
@@ -281,38 +413,39 @@ nav ul li a:focus,
     text-align: justify;
 }
 
-/* --- Bagian Keahlian (Skills) --- */
-#skills {
-    padding: 4rem 2rem;
+.about-content > div p {
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
 }
 
+/* --- Bagian Keahlian (Skills) --- */
 #skills h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: left; /* Biarkan text-align: left untuk h3 di dalam skill-category */
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
     color: var(--heading-color);
+    text-align: left;
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ini yang membuat grid responsive */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .skill-category {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 1.75rem;
     transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
 }
 
 .skill-category:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 16px var(--shadow-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .skill-category ul {
@@ -321,32 +454,31 @@ nav ul li a:focus,
 }
 
 .skill-category ul li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
     font-size: 1.05rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
 }
 
-.skill-category ul li span { /* PERBAIKAN: Mengubah 'i' menjadi 'span' */
+.skill-category ul li span {
     color: var(--primary-color);
-    font-size: 1.2rem;
-    width: 20px;
+    font-size: 1.25rem;
+    width: 24px;
     text-align: center;
 }
 
 /* --- Bagian Pengalaman (Experience) --- */
 #experience {
     background-color: var(--section-bg-color);
-    padding: 4rem 2rem;
 }
 
 .experience-item {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
     padding: 2rem;
     margin-bottom: 2rem;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -357,13 +489,13 @@ nav ul li a:focus,
 }
 
 .experience-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 16px var(--shadow-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .experience-item h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--heading-color);
     text-align: left;
@@ -372,7 +504,34 @@ nav ul li a:focus,
 .experience-item p {
     font-size: 1.05rem;
     color: var(--text-color);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 650px;
+    margin: -1.5rem auto 2.5rem;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.experience-badge {
+    background-color: rgba(var(--primary-color-rgb), 0.12);
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
 }
 
 .experience-item ul {
@@ -386,15 +545,11 @@ nav ul li a:focus,
 }
 
 /* --- Bagian Edukasi (Education) --- */
-#education {
-    padding: 4rem 2rem;
-}
-
 .education-item {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
     padding: 2rem;
     margin-bottom: 2rem;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -405,13 +560,13 @@ nav ul li a:focus,
 }
 
 .education-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 16px var(--shadow-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .education-item h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--heading-color);
     text-align: left;
@@ -424,25 +579,20 @@ nav ul li a:focus,
 }
 
 /* --- Bagian Portofolio --- */
-#portfolio {
-    padding: 4rem 2rem;
-}
-
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
 }
 
 .portfolio-item {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     padding: 1.5rem;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -451,134 +601,181 @@ nav ul li a:focus,
 .portfolio-item:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 16px var(--shadow-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
-.portfolio-item img {
+.portfolio-img-wrapper {
+    position: relative;
     width: 100%;
-    height: 200px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.portfolio-img-wrapper img {
+    width: 100%;
+    height: 220px;
     object-fit: cover;
-    margin-bottom: 1rem;
-    border-radius: 4px;
+    display: block;
+    margin-bottom: 0;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-img-wrapper img {
+    transform: scale(1.04);
+}
+
+.project-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.badge-hybrid {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: #ffffff;
+}
+
+.badge-web {
+    background: linear-gradient(135deg, #007bff, #00d2ff);
+    color: #ffffff;
+}
+
+.badge-iot {
+    background: linear-gradient(135deg, #00C853, #00E676);
+    color: #101418;
+}
+
+.portfolio-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .portfolio-item h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-.portfolio-item p {
-    margin-bottom: 1rem;
-    flex-grow: 1;
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
     text-align: left;
 }
 
+.portfolio-item p {
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+    text-align: left;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
 .portfolio-item .buttons-wrapper {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: flex;
-    justify-content: center;
     gap: 0.75rem;
 }
 
-.button-small {
-    background-color: var(--primary-color);
-    color: #fff;
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s, border-color 0.3s;
-    border: 1px solid var(--primary-color);
-    text-align: center;
-}
-
-.button-small:hover {
-    background-color: var(--primary-hover-color);
-    color: #fff;
-    transform: translateY(-2px);
-    border-color: var(--primary-hover-color);
-}
-
 .portfolio-item .github-link {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    border-color: var(--text-color);
-}
-
-body.dark-theme .portfolio-item .github-link {
-    background-color: #555;
+    background-color: transparent;
     color: var(--text-color);
-    border-color: #555;
+    border: 1px solid var(--border-color);
 }
 
 .portfolio-item .github-link:hover {
-    background-color: var(--heading-color);
-    color: #fff;
-    border-color: var(--heading-color);
+    background-color: var(--card-bg-color);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+body.dark-theme .portfolio-item .github-link {
+    background-color: transparent;
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 body.dark-theme .portfolio-item .github-link:hover {
-    background-color: #777;
-    color: var(--heading-color);
-    border-color: #777;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 /* --- Bagian Kontak --- */
 #contact {
     background-color: var(--section-bg-color);
     text-align: center;
-    padding: 4rem 2rem;
 }
 
 #contact > p {
     text-align: center;
-    margin-bottom: 1.5rem;
+    max-width: 650px;
+    margin: -1rem auto 2rem;
+    color: var(--text-color);
 }
 
 .contact-info {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 .contact-info p {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
     margin: 0;
     font-size: 1.1rem;
     color: var(--text-color);
 }
 
-.contact-info p span { /* PERBAIKAN: Mengubah 'i' menjadi 'span' */
+.contact-info p span.fa-solid {
     color: var(--primary-color);
-    font-size: 1.3rem;
-    width: 20px;
+    font-size: 1.25rem;
+    width: 24px;
     text-align: center;
 }
 
+.contact-info p a {
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.contact-info p a:hover {
+    color: var(--primary-color);
+}
+
+/* Form Kontak */
 #contact-form {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
+    text-align: left;
 }
 
 #contact-form input,
 #contact-form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 14px 16px;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-family);
     font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 #contact-form input:focus,
@@ -589,141 +786,164 @@ body.dark-theme .portfolio-item .github-link:hover {
 }
 
 #contact-form button {
-    background-color: var(--primary-color);
-    color: #fff;
     align-self: center;
-    transition: background-color 0.3s, transform 0.2s;
-}
-#contact-form button:hover {
-    background-color: var(--primary-hover-color);
-    transform: translateY(-2px);
+    font-size: 1rem;
 }
 
+.form-status {
+    padding: 0.85rem 1.25rem;
+    border-radius: 6px;
+    display: none;
+    font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-status.success {
+    display: block;
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.form-status.error {
+    display: block;
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* --- Social Links & Footer --- */
 .social-links {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .social-links a {
-    font-size: 2rem;
-    margin: 0 1rem;
+    font-size: 1.75rem;
+    margin: 0 0.85rem;
     color: var(--text-color);
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.2s;
+    display: inline-block;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
-/* --- Footer --- */
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 1.5rem;
     border-top: 1px solid var(--border-color);
-    background-color: var(--section-bg-color);
+    background-color: var(--card-bg-color);
 }
 
-/* --- Section Divider --- */
-.section-divider {
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border-color), transparent);
-    margin: 4rem auto;
-    width: 60%;
-    max-width: 800px;
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
 }
-
-body.dark-theme .section-divider {
-    background: linear-gradient(to right, transparent, var(--border-color), transparent);
-}
-
 
 /* --- Media Queries untuk Responsif --- */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+    nav {
+        padding: 0.85rem 1.5rem;
+        position: relative;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--header-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.5rem 1rem;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 20px var(--shadow-color);
+        display: none;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
     }
 
     h2 {
         font-size: 2rem;
     }
 
-    nav {
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .logo {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-right: 0;
-    }
-
-    #theme-toggle {
-        margin-left: 0;
-        margin-top: 0.5rem;
-    }
-
     .about-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 1.5rem;
+        gap: 2rem;
     }
-    #about, #skills, #experience, #education, #portfolio, #contact {
-        padding: 2.5rem 1.5rem;
+
+    .about-content > div {
+        text-align: left;
     }
+
+    .container {
+        padding: 3rem 1.5rem;
+    }
+
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    .skill-category h3 {
-        text-align: center;
-    }
-    .experience-item h3, .education-item h3 {
-        text-align: center;
-    }
-    .experience-item ul, .education-item p {
-        text-align: left;
-    }
-    /* Info kontak di mobile */
+
     .contact-info {
         align-items: flex-start;
-        text-align: left;
+        max-width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        width: fit-content;
-    }
-    .contact-info p {
-        justify-content: flex-start;
     }
 }
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.85rem;
     }
+
     .hero-content p {
         font-size: 1rem;
     }
+
     .container {
-        padding: 3rem 1rem;
+        padding: 2.5rem 1rem;
     }
-    .portfolio-item .buttons-wrapper {
-        flex-direction: column;
-        gap: 0.5rem;
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
     }
-    /* Responsive untuk .contact-info yang sudah center */
+
     .contact-info {
         width: 100%;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .contact-info p {
+        font-size: 0.95rem;
     }
 }
