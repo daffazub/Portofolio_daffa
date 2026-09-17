@@ -221,7 +221,7 @@ export default function HomePage() {
             <div className="about-content reveal">
               {/* PLACEHOLDER: ganti foto profil pada public/images/FOTOO GES.jpg bila diperlukan. */}
               <img src="/images/FOTOO%20GES.jpg" alt="Foto Daffa Zubair Rabbani" className="profile-photo" loading="lazy" />
-              <div className="about-copy"><p className="lead">Lulusan Teknik Komputer Jaringan dan mahasiswa Teknik Informatika yang senang berada di antara dunia software dan hardware.</p><p>Saya mengeksplorasi pengembangan web, aplikasi mobile, dan Internet of Things untuk membuat solusi yang aplikatif. Pengalaman PKL di BKPSDM Kota Bekasi membentuk cara kerja yang teliti, kolaboratif, dan responsif terhadap kebutuhan pengguna.</p><a className="text-link" href="/files/CV_Daffa_Zubair_Rabbani.pdf" download="CV_Daffa_Zubair_Rabbani.pdf">Download CV <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a></div>
+              <div className="about-copy"><p className="lead">Lulusan SMK Teknik Komputer dan Jaringan serta mahasiswa aktif Teknik Informatika yang senang berada di antara dunia software dan hardware.</p><p>Saya mengeksplorasi pengembangan web, aplikasi mobile, dan Internet of Things untuk membuat solusi yang aplikatif. Pengalaman PKL di BKPSDM Kota Bekasi membentuk cara kerja yang teliti, kolaboratif, dan responsif terhadap kebutuhan pengguna.</p><a className="text-link" href="/files/CV_Daffa_Zubair_Rabbani.pdf" download="CV_Daffa_Zubair_Rabbani.pdf">Download CV <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a></div>
             </div>
           </div>
         </section>
