@@ -1,246 +1,207 @@
 # Product Requirements Document (PRD)
 
-## 1. Informasi Produk
+## 1. Ringkasan Produk
 
-- **Nama produk:** Portofolio Daffa Zubair Rabbani
-- **Jenis produk:** Website portofolio personal
-- **Platform:** Next.js App Router, web responsif desktop dan mobile
-- **Status:** MVP berjalan
-- **Pemilik produk:** Daffa Zubair Rabbani
-- **Bahasa utama:** Bahasa Indonesia
+**Nama:** Portofolio Daffa Zubair Rabbani
+**Jenis:** Website portofolio personal satu halaman
+**Platform:** Next.js App Router, React, CSS responsif
+**Bahasa:** Bahasa Indonesia
+**Status:** MVP aktif
 
-## 2. Ringkasan Produk
+Website ini menjadi pusat informasi profesional Daffa Zubair Rabbani sebagai Web dan IoT Developer. Pengunjung dapat memahami profil, keahlian, pengalaman, pendidikan, karya, serta cara menghubungi Daffa melalui pengalaman browsing yang cepat, jelas, dan responsif.
 
-Website ini menjadi pusat informasi profesional Daffa Zubair Rabbani sebagai Web dan IoT Developer. Pengunjung dapat mengenal profil, melihat keahlian, pengalaman, pendidikan, proyek, serta menghubungi Daffa melalui kontak langsung atau formulir pesan.
+## 2. Tujuan Produk
 
-Produk harus menyampaikan kompetensi teknis secara cepat, terlihat profesional, mudah dinavigasi, responsif di berbagai ukuran layar, dan memberi jalur kontak yang jelas.
-
-## 3. Latar Belakang Dan Masalah
-
-Calon recruiter, klien, atau kolaborator membutuhkan satu halaman yang ringkas untuk:
-
-- Memahami latar belakang dan fokus keahlian Daffa.
-- Menilai pengalaman dan proyek yang pernah dikerjakan.
-- Melihat bukti kemampuan Web, Mobile, dan IoT.
-- Mengakses CV dan profil profesional.
-- Menghubungi Daffa tanpa proses yang rumit.
-
-Tanpa portofolio terpusat, informasi tersebut tersebar dan sulit dibandingkan dalam waktu singkat.
-
-## 4. Tujuan Produk
-
-### Tujuan Utama
-
-1. Membangun kredibilitas profesional Daffa di bidang Web, Mobile, dan IoT.
-2. Menampilkan proyek dengan konteks, kategori, dan tautan repositori.
-3. Memudahkan pengunjung menghubungi Daffa.
-4. Memberikan pengalaman browsing yang cepat, nyaman, dan responsif.
+1. Menampilkan identitas dan kompetensi Daffa secara profesional.
+2. Membantu recruiter, klien, dan kolaborator menemukan informasi penting dalam satu halaman.
+3. Menyajikan proyek Web, Mobile, Desktop, dan IoT dengan konteks singkat serta tautan kode sumber.
+4. Menyediakan jalur kontak langsung dan akses CV.
+5. Memberikan pengalaman UI/UX yang nyaman pada desktop maupun mobile, termasuk tema terang dan gelap.
 
 ### Bukan Tujuan MVP
 
-- Menjadi platform blog atau CMS.
-- Menyediakan autentikasi pengguna.
-- Menyimpan data pesan ke database sendiri.
-- Menjadi marketplace jasa atau sistem lamaran kerja.
+- Blog, CMS, atau dashboard admin.
+- Autentikasi dan akun pengguna.
+- Penyimpanan pesan ke database.
+- Marketplace jasa atau sistem rekrutmen.
 
-## 5. Target Pengguna
+## 3. Target Pengguna
 
-### Pengunjung Utama
+- Recruiter atau HR yang melakukan penilaian awal kandidat.
+- Calon klien yang mencari developer Web, Mobile, atau IoT.
+- Dosen, mentor, dan rekan kolaborasi akademik.
+- Developer yang ingin melihat contoh proyek dan teknologi yang digunakan.
 
-- Recruiter atau HR yang ingin menilai kandidat secara cepat.
-- Calon klien yang mencari developer untuk proyek Web, Mobile, atau IoT.
-- Dosen, mentor, atau rekan kolaborasi akademik.
-- Developer lain yang ingin melihat proyek dan teknologi yang digunakan.
+## 4. Struktur Pengalaman
 
-### Kebutuhan Pengguna
+Website berbentuk single-page portfolio dengan section berikut:
 
-- Informasi penting mudah ditemukan.
-- Tampilan terlihat profesional dan konsisten.
-- Proyek dapat dipahami tanpa membaca terlalu panjang.
-- CV dan tautan profesional dapat diakses dengan mudah.
-- Website nyaman digunakan lewat ponsel.
-
-## 6. User Stories
-
-- Sebagai recruiter, saya ingin melihat ringkasan profil dan keahlian agar dapat menilai kecocokan kandidat dengan cepat.
-- Sebagai calon klien, saya ingin melihat daftar proyek dan repositorinya agar dapat memahami pengalaman teknis Daffa.
-- Sebagai pengunjung mobile, saya ingin membuka navigasi dan berpindah section dengan mudah.
-- Sebagai pengunjung, saya ingin mengganti tema terang atau gelap sesuai kenyamanan saya.
-- Sebagai calon kolaborator, saya ingin mengirim pesan melalui formulir kontak dan mendapat umpan balik yang jelas.
-- Sebagai pemilik portofolio, saya ingin mengunduh CV dan mengarahkan pengunjung ke GitHub serta LinkedIn.
-
-## 7. Ruang Lingkup MVP
-
-### Halaman Dan Section
-
-1. **Beranda/Hero**
-   - Nama dan ringkasan profesi.
-   - Tombol menuju portofolio.
+1. **Beranda**
+   - Nama, profesi, ringkasan kompetensi, dan CTA menuju portofolio.
 2. **Tentang Saya**
-   - Foto profil.
-   - Ringkasan pendidikan dan minat teknologi.
-   - Tombol download CV.
+   - Foto, latar belakang pendidikan, minat teknologi, dan tombol download CV.
 3. **Keahlian**
-   - Bahasa pemrograman.
-   - Design dan prototyping.
-   - Tools, database, dan IoT.
+   - Bahasa pemrograman; design dan prototyping; tools, database, dan IoT.
 4. **Pengalaman**
    - Pengalaman PKL di BKPSDM Kota Bekasi.
 5. **Edukasi**
-   - Riwayat pendidikan yang relevan.
+   - Pendidikan Politeknik Negeri Jember dan SMK Yadika 13.
 6. **Portofolio**
-   - Kartu proyek dengan gambar, kategori, deskripsi, dan repositori.
+   - Kartu proyek dengan preview, kategori, deskripsi, dan tautan repositori.
 7. **Kontak**
-   - Nomor telepon, email, lokasi, dan formulir pesan.
+   - Nomor telepon, email, lokasi, serta formulir pesan.
 8. **Footer**
    - Tautan LinkedIn, GitHub, email, dan copyright.
 
-## 8. Kebutuhan Fungsional
+## 5. Kebutuhan Fungsional
 
-### Navigasi
+### Navigasi dan Layout
 
-- Navigasi desktop menampilkan seluruh tautan section.
-- Navigasi mobile menggunakan tombol hamburger.
-- Menu mobile dapat ditutup melalui klik di luar menu atau tombol Escape.
-- Pengguna keyboard dapat melewati navigasi melalui skip link menuju konten utama.
-- Klik tautan internal melakukan smooth scroll dengan kompensasi tinggi header.
-- Tautan navigasi aktif mengikuti section yang sedang terlihat.
-- Indikator progress scroll membantu pengguna memahami posisi mereka di halaman.
+- Header tetap tersedia saat pengguna menggulir halaman.
+- Navigasi desktop menampilkan seluruh section.
+- Navigasi mobile dapat dibuka dan ditutup dengan tombol hamburger.
+- Tombol navigasi menggulir ke section tujuan dengan smooth scroll.
+- Section aktif ditandai berdasarkan posisi viewport.
+- Progress bar di header menunjukkan posisi scroll halaman.
+- Skip link tersedia untuk pengguna keyboard.
 
-### Tema
+### Tema dan Visual
 
-- Pengunjung dapat beralih antara tema terang dan gelap.
+- Tombol tema mengubah antara mode terang dan gelap.
 - Preferensi tema disimpan di `localStorage`.
-- Jika belum ada preferensi tersimpan, sistem mengikuti preferensi sistem operasi.
+- Kunjungan pertama mengikuti preferensi tema sistem operasi.
+- Palet warna, border, bayangan, dan latar section beradaptasi dengan tema aktif.
+- Elemen interaktif memiliki hover, focus, dan disabled state yang terlihat.
+
+### Animasi dan Interaksi
+
+- Heading, konten, dan kartu tampil dengan scroll reveal saat masuk viewport.
+- Kartu proyek, pengalaman, pendidikan, dan keahlian merespons pointer secara halus.
+- Animasi tidak boleh menghalangi pembacaan atau interaksi konten.
+- Saat `prefers-reduced-motion: reduce` aktif, reveal tetap terlihat tanpa animasi bermakna dan smooth scroll dinonaktifkan.
 
 ### Portofolio
 
-- Setiap proyek memiliki judul, gambar, kategori, deskripsi, dan tautan eksternal.
-- Tautan eksternal dibuka di tab baru dengan atribut keamanan yang sesuai.
+Setiap kartu proyek wajib memiliki:
 
-### Formulir Kontak
+- Gambar preview dan alternative text.
+- Badge kategori.
+- Judul proyek.
+- Deskripsi singkat manfaat atau fungsi.
+- Tautan repositori/kode sumber yang dibuka di tab baru.
 
-- Field wajib: nama, email, dan pesan.
-- Sistem memvalidasi field kosong.
-- Sistem memvalidasi format email.
-- Tombol submit menampilkan state proses pengiriman.
-- Sistem menampilkan status berhasil atau gagal.
-- Form di-reset setelah simulasi pengiriman berhasil.
+Proyek MVP:
 
-### Scroll Trigger
+- Amigo Cake.
+- Admin Kopi (Vybrasi Affiliate).
+- Pengusir Kerumunan Unggas Otomatis ESP32-CAM.
+- Sistem Parkir Berbasis RFID.
+- Sistem Perjalanan Dinas (RAB & LPJ).
 
-- Section dan kartu diberi animasi saat masuk viewport.
-- Animasi hanya berjalan ketika elemen terlihat.
-- Animasi tidak menghalangi akses ke konten.
-- Pengguna dengan preferensi reduced motion tidak dipaksa melihat animasi.
+### Kontak
 
-## 9. Kebutuhan Non-Fungsional
+- Form memiliki field nama, email, dan pesan.
+- Semua field wajib diisi.
+- Email divalidasi menggunakan format email dasar.
+- Tombol submit menampilkan state `Mengirim...` selama simulasi pengiriman.
+- Status berhasil atau gagal diumumkan melalui area alert.
+- Form di-reset setelah simulasi berhasil.
+- MVP tidak mengirim data ke backend atau layanan email nyata.
+
+## 6. Kebutuhan Non-Fungsional
 
 ### Responsivitas
 
-- Layout harus usable pada lebar minimal 320px.
-- Tidak boleh ada horizontal overflow pada mobile.
-- Kartu proyek dan keahlian menyesuaikan lebar layar.
+- Layout usable mulai dari lebar 320px.
+- Tidak ada horizontal overflow pada mobile.
+- Grid skill dan portofolio menyesuaikan ukuran viewport.
+- Menu dan tombol tetap mudah disentuh pada perangkat mobile.
 
 ### Aksesibilitas
 
-- Semua gambar memiliki alternative text.
-- Tombol dan tautan memiliki label yang jelas.
-- Navigasi keyboard harus tetap dapat digunakan.
-- Skip link harus terlihat saat menerima fokus keyboard.
-- Focus state harus terlihat.
-- Kontras teks dan tombol harus terbaca pada tema terang maupun gelap.
-- Form memakai label semantik walaupun label visual disembunyikan.
+- Dokumen menggunakan `lang="id"` dan struktur heading yang berurutan.
+- Semua gambar memiliki `alt` yang relevan.
+- Kontrol tema dan menu memiliki accessible label serta state yang sesuai.
+- Form menggunakan label semantik, meskipun label visual disembunyikan.
+- Focus state keyboard terlihat.
+- Kontras teks dan kontrol harus terbaca pada kedua tema.
 
-### Performa
+### Performa dan Keamanan
 
-- Gambar non-kritis menggunakan lazy loading.
-- Tidak menambahkan library JavaScript besar untuk fitur sederhana.
-- Animasi menggunakan properti yang relatif ringan seperti `opacity` dan `transform`.
-- Server lokal harus dapat menyajikan file HTML, CSS, JavaScript, gambar, dan PDF.
+- Gambar non-kritis memakai lazy loading.
+- Animasi mengutamakan `opacity` dan `transform`.
+- Tidak menambah library besar untuk interaksi sederhana.
+- Tautan eksternal memakai `rel="noopener noreferrer"`.
+- Aset publik yang disajikan server tidak boleh melewati direktori proyek.
+- Data form tidak boleh dianggap tersimpan sebelum backend nyata ditambahkan.
 
-### Keamanan
+## 7. Kriteria Penerimaan MVP
 
-- Tautan eksternal menggunakan `rel="noopener noreferrer"`.
-- Path file yang diminta server harus dinormalisasi untuk mengurangi risiko path traversal.
-- Data formulir tidak boleh ditampilkan kembali sebagai HTML tanpa sanitasi jika backend nyata ditambahkan.
+- Halaman dapat dimuat melalui development server Next.js.
+- Semua tujuh item navigasi menuju section yang benar.
+- Menu mobile dapat dibuka dan ditutup tanpa menutupi akses ke konten.
+- Tema tetap sama setelah halaman dimuat ulang.
+- CV dapat diunduh dari section Tentang Saya.
+- Lima kartu portofolio menampilkan informasi lengkap dan tautan yang dapat dibuka.
+- Form menolak field kosong dan email tidak valid.
+- Form menampilkan feedback loading dan hasil submit.
+- Scroll reveal bekerja tanpa error JavaScript.
+- Halaman tetap terbaca saat reduced motion aktif.
+- Tampilan tidak mengalami horizontal overflow pada mobile.
+- Tidak ada error baru pada console browser saat alur utama digunakan.
 
-## 10. Kriteria Penerimaan MVP
+## 8. Metrik Keberhasilan
 
-- Pengunjung dapat membuka website melalui desktop dan mobile.
-- Semua tautan navigasi mengarah ke section yang tepat.
-- Menu mobile dapat dibuka, ditutup, dan digunakan dengan keyboard.
-- Toggle tema mengubah tampilan dan mempertahankan pilihan setelah reload.
-- Semua kartu proyek menampilkan informasi yang lengkap dan dapat dibaca.
-- Tombol CV mengunduh file CV yang tersedia.
-- Form menolak data kosong dan email tidak valid.
-- Form menampilkan feedback setelah submit.
-- Elemen section muncul dengan scroll reveal tanpa error JavaScript.
-- Website tetap terbaca ketika `prefers-reduced-motion: reduce` aktif.
-- Tidak ada error pada pemeriksaan sintaks JavaScript.
-
-## 11. Metrik Keberhasilan
-
-- Pengunjung dapat menemukan section Portofolio dalam maksimal dua interaksi.
-- Pengunjung dapat menemukan cara kontak dari section Kontak atau Footer.
+- Pengunjung dapat mencapai Portofolio dalam maksimal dua interaksi dari halaman awal.
+- Pengunjung dapat menemukan kontak dan CV tanpa pencarian manual yang panjang.
+- Semua target navigasi internal valid.
 - Tidak ada horizontal scroll pada breakpoint mobile utama.
-- Semua navigasi internal memiliki target yang valid.
-- Tidak ada error JavaScript saat halaman dimuat atau saat form digunakan.
-- Peningkatan klik pada tombol download CV, repositori, dan kontak dapat diukur jika analytics ditambahkan.
+- Interaksi utama tidak menghasilkan error console.
+- Klik CV, repositori, email, dan kontak dapat diukur pada fase analytics.
 
-## 12. Prioritas Pengembangan
+## 9. Prioritas Roadmap
 
-### P0 - Wajib Untuk MVP
+### P0 - Saat Ini
 
-- Informasi profil, keahlian, pengalaman, edukasi, portofolio, dan kontak.
-- Responsive layout.
-- Navigasi desktop dan mobile.
-- Tema terang dan gelap.
-- Validasi formulir.
-- Scroll reveal yang menghormati reduced motion.
+- Profil, skill, pengalaman, edukasi, portofolio, kontak, dan footer.
+- Navigasi responsif, tema terang/gelap, scroll progress, dan scroll reveal.
+- Validasi serta feedback form kontak.
+- Akses CV, GitHub, LinkedIn, email, dan telepon.
 
-### P1 - Peningkatan Berikutnya
+### P1 - Berikutnya
 
-- Backend atau layanan form nyata agar pesan benar-benar terkirim.
-- Open Graph metadata untuk preview saat dibagikan.
-- Favicon dan metadata SEO yang lebih lengkap.
-- Optimasi ukuran gambar dan audit Lighthouse.
-- Filter proyek berdasarkan kategori.
-- Detail proyek terpisah untuk studi kasus.
+- Integrasi form dengan Formspree, EmailJS, atau backend aman.
+- Open Graph dan metadata SEO yang lebih lengkap.
+- Audit Lighthouse dan optimasi aset gambar.
+- Filter portofolio berdasarkan kategori.
+- Halaman detail untuk studi kasus proyek.
 
 ### P2 - Eksplorasi
 
-- Dashboard admin untuk mengelola proyek.
-- Bahasa Indonesia dan Inggris.
-- Integrasi analytics yang menghormati privasi.
+- Dukungan bahasa Indonesia dan Inggris.
+- Analytics yang menghormati privasi.
 - Blog teknis atau catatan proyek.
-- Testimoni atau rekomendasi dari kolaborator.
+- Dashboard admin untuk mengelola konten.
+- Testimoni atau rekomendasi kolaborator.
 
-## 13. Risiko Dan Mitigasi
+## 10. Risiko dan Mitigasi
 
 | Risiko | Dampak | Mitigasi |
 | --- | --- | --- |
-| Formulir masih berupa simulasi | Pesan tidak benar-benar diterima | Integrasikan Formspree, EmailJS, atau backend aman pada fase P1 |
-| Gambar besar memperlambat loading | Pengalaman mobile menurun | Kompres gambar, gunakan format modern, dan pertahankan lazy loading |
-| Link repositori tidak spesifik ke proyek | Kredibilitas proyek berkurang | Ganti setiap tautan dengan repositori proyek yang sesuai |
-| Animasi mengganggu pengguna tertentu | Aksesibilitas menurun | Gunakan media query `prefers-reduced-motion` |
-| Konten proyek tidak diperbarui | Informasi menjadi tidak relevan | Jadwalkan review konten setiap semester atau setelah proyek selesai |
+| Form masih simulasi | Pesan tidak benar-benar diterima | Integrasikan layanan/backend form pada P1 |
+| Link proyek belum spesifik | Kredibilitas portofolio menurun | Audit dan perbarui URL setiap proyek |
+| Aset gambar berukuran besar | Loading mobile lambat | Kompres aset dan gunakan format modern |
+| Animasi mengganggu sebagian pengguna | Aksesibilitas menurun | Pertahankan dukungan reduced motion |
+| Konten tidak diperbarui | Informasi menjadi usang | Review konten setiap semester atau setelah proyek selesai |
 
-## 14. Asumsi
+## 11. Definition of Done
 
-- Daffa memiliki hak untuk menggunakan foto, logo, gambar proyek, dan CV yang ditampilkan.
-- File CV dan aset gambar tersedia pada folder proyek.
-- Tautan GitHub dan LinkedIn tetap aktif.
-- Website pada MVP digunakan sebagai portofolio statis tanpa akun pengguna.
-- Bahasa utama pengunjung adalah Bahasa Indonesia.
+Perubahan produk dianggap selesai jika:
 
-## 15. Definition Of Done
-
-Fitur dianggap selesai jika:
-
-- Implementasi sesuai ruang lingkup dan kriteria penerimaan.
-- Tidak menimbulkan error baru pada console browser.
-- Tampilan telah dicek pada desktop dan mobile.
-- Interaksi keyboard dasar berfungsi.
+- Kode dan dokumentasi sesuai scope PRD.
+- UI telah diperiksa pada desktop dan mobile.
+- Navigasi mouse, keyboard, dan mobile berfungsi.
 - Mode terang, mode gelap, dan reduced motion tetap usable.
-- Dokumentasi perubahan diperbarui jika perilaku produk berubah.
+- Tidak ada error baru pada build atau console browser.
+- Tautan aset, CV, sosial, dan repositori telah diverifikasi.
+- Perubahan perilaku yang penting sudah diperbarui di PRD ini.

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const navItems = [
   ['hero', 'Beranda'],
@@ -14,26 +14,72 @@ const navItems = [
 
 const skillGroups = [
   {
+    index: '01',
     title: 'Bahasa Pemrograman',
-    skills: [['fa-brands fa-html5', 'HTML5'], ['fa-brands fa-css3-alt', 'CSS3'], ['fa-brands fa-square-js', 'JavaScript (ES6+)'], ['fa-brands fa-java', 'Java & Java FX'], ['fa-solid fa-microchip', 'C / C++ (Embedded/IoT)']],
+    icon: 'fa-code',
+    skills: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Java & JavaFX', 'C / C++ Embedded'],
   },
   {
+    index: '02',
     title: 'Design & Prototyping',
-    skills: [['fa-brands fa-figma', 'Figma'], ['fa-solid fa-mobile-screen', 'UI/UX Responsive Design'], ['fa-brands fa-font-awesome', 'Font Awesome']],
+    icon: 'fa-pen-ruler',
+    skills: ['Figma', 'UI/UX Responsive Design', 'Design System', 'Font Awesome'],
   },
   {
+    index: '03',
     title: 'Tools, Database & IoT',
-    skills: [['fa-brands fa-git-alt', 'Git & GitHub'], ['fa-solid fa-code', 'VS Code'], ['fa-solid fa-database', 'MySQL'], ['fa-solid fa-wifi', 'ESP32-CAM & Sensor IoT']],
+    icon: 'fa-microchip',
+    skills: ['Git & GitHub', 'VS Code', 'MySQL', 'ESP32-CAM & Sensor IoT'],
   },
 ];
 
+// PLACEHOLDER DATA: ganti URL repositori dengan link proyek asli bila tersedia.
 const projects = [
-  ['images/amigo-cake.svg', 'Preview Aplikasi Amigo Cake', 'badge-hybrid', 'Web & Mobile', 'Amigo Cake', 'Aplikasi pemesanan kue digital terintegrasi lintas platform (Web & Mobile). Mempermudah konsumen menjelajahi katalog varian kue, melakukan pemesanan langsung, dan memantau status pesanan secara efisien.', 'https://github.com/daffazub', 'Repositori'],
-  ['images/admin-kopi.svg', 'Preview Aplikasi Admin Kopi Vybrasi Affiliate', 'badge-web', 'Web Application', 'Admin Kopi (Vybrasi Affiliate)', 'Dashboard manajemen program afiliasi penjualan produk kopi. Dilengkapi pelacakan performa referral mitra, pencatatan transaksi masuk, kalkulasi komisi otomatis, dan analitik penjualan berbasis web.', 'https://github.com/daffazub', 'Repositori'],
-  ['images/esp32-cam.svg', 'Preview Sistem Pengusir Kerumunan Unggas ESP32-CAM', 'badge-iot', 'IoT & Hardware', 'Pengusir Kerumunan Unggas Otomatis', 'Sistem cerdas berbasis mikrokontroler ESP32-CAM untuk mendeteksi kerumunan unggas atau hama secara visual, lalu memicu aktuator pengusir frekuensi suara dan gerak secara otomatis.', 'https://github.com/daffazub', 'Repositori'],
-  ['images/Login%20Sistem%20Parkir.jpg', 'Gambar pratinjau Sistem Parkir Berbasis RFID', 'badge-iot', 'Desktop & RFID', 'Sistem Parkir Berbasis RFID', 'Aplikasi otomatisasi pos parkir menggunakan pemindai RFID. Mempercepat verifikasi kartu kendaraan, pembukaan gerbang otomatis, dan kalkulasi biaya parkir.', 'https://github.com/daffazub/Parkiran_RFID.git', 'Kode Sumber'],
-  ['images/Perjalanan%20dinas.jpg', 'Gambar pratinjau Sistem Perjalanan Dinas Berbasis RAB dan LPJ', 'badge-web', 'Web Application', 'Sistem Perjalanan Dinas (RAB & LPJ)', 'Aplikasi berbasis web untuk memudahkan siklus administrasi perjalanan dinas, mulai dari pengajuan izin, persetujuan atasan, pengelolaan anggaran, hingga pelaporan keuangan.', 'https://github.com/daffazub/E41240653_Daffa-Zubair-Rabbani_Golongan-A.git', 'Kode Sumber'],
+  {
+    image: '/images/amigo-cake.svg',
+    alt: 'Preview aplikasi Amigo Cake',
+    category: 'WEB',
+    title: 'Amigo Cake',
+    description: 'Aplikasi pemesanan kue lintas platform yang membantu konsumen menjelajahi katalog, memesan, dan memantau status pesanan.',
+    href: 'https://github.com/daffazub',
+  },
+  {
+    image: '/images/admin-kopi.svg',
+    alt: 'Preview dashboard Admin Kopi Vybrasi Affiliate',
+    category: 'WEB',
+    title: 'Admin Kopi / Vybrasi Affiliate',
+    description: 'Dashboard afiliasi untuk melacak referral, transaksi, komisi otomatis, dan performa penjualan secara terpusat.',
+    href: 'https://github.com/daffazub',
+  },
+  {
+    image: '/images/esp32-cam.svg',
+    alt: 'Preview sistem pengusir kerumunan unggas berbasis ESP32-CAM',
+    category: 'IOT',
+    title: 'Pengusir Kerumunan Unggas Otomatis',
+    description: 'Sistem cerdas berbasis ESP32-CAM yang mendeteksi kerumunan secara visual lalu memicu aktuator pengusir otomatis.',
+    href: 'https://github.com/daffazub',
+  },
+  {
+    image: '/images/Login%20Sistem%20Parkir.jpg',
+    alt: 'Preview sistem parkir berbasis RFID',
+    category: 'IOT',
+    title: 'Sistem Parkir Berbasis RFID',
+    description: 'Otomatisasi pos parkir untuk mempercepat verifikasi kartu, membuka gerbang, dan menghitung biaya parkir.',
+    href: 'https://github.com/daffazub/Parkiran_RFID.git',
+  },
+  {
+    image: '/images/Perjalanan%20dinas.jpg',
+    alt: 'Preview sistem perjalanan dinas RAB dan LPJ',
+    category: 'WEB',
+    title: 'Sistem Perjalanan Dinas - RAB & LPJ',
+    description: 'Aplikasi administrasi untuk mengelola pengajuan, persetujuan, anggaran, hingga pelaporan perjalanan dinas.',
+    href: 'https://github.com/daffazub/E41240653_Daffa-Zubair-Rabbani_Golongan-A.git',
+  },
 ];
+
+function ArrowIcon() {
+  return <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />;
+}
 
 export default function HomePage() {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -41,28 +87,23 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState('hero');
   const [formStatus, setFormStatus] = useState(null);
   const [isSending, setIsSending] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = window.localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
   }, []);
 
   useEffect(() => {
+    document.documentElement.dataset.theme = darkTheme ? 'dark' : 'light';
     document.documentElement.classList.toggle('dark-theme', darkTheme);
-    document.body.classList.toggle('dark-theme', darkTheme);
-    localStorage.setItem('theme', darkTheme ? 'dark' : 'light');
+    window.localStorage.setItem('theme', darkTheme ? 'dark' : 'light');
   }, [darkTheme]);
 
   useEffect(() => {
     const sections = document.querySelectorAll('main section');
-    const revealElements = document.querySelectorAll('main section:not(#hero) h2, .about-content, .skill-category, .experience-item, .education-item, .portfolio-item, #contact > p, .contact-info, #contact-form, .social-links');
-
-    revealElements.forEach((element, index) => {
-      element.classList.add('reveal');
-      element.style.setProperty('--reveal-delay', `${(index % 4) * 90}ms`);
-    });
-
+    const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -70,58 +111,50 @@ export default function HomePage() {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14, rootMargin: '0px 0px -40px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -48px' });
     revealElements.forEach((element) => revealObserver.observe(element));
 
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) setActiveSection(entry.target.id);
       });
-    }, { rootMargin: '-25% 0px -65% 0px' });
+    }, { rootMargin: '-30% 0px -60% 0px' });
     sections.forEach((section) => sectionObserver.observe(section));
 
     const updateProgress = () => {
-      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
-      const progressBar = document.getElementById('scroll-progress-bar');
-      if (progressBar) progressBar.style.width = `${Math.min(progress, 100)}%`;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+      document.documentElement.style.setProperty('--scroll-progress', `${Math.min(progress, 100)}%`);
     };
-    const cards = document.querySelectorAll('.skill-category, .experience-item, .education-item, .portfolio-item');
-    const pointerHandlers = [];
-    cards.forEach((card) => {
-      const move = (event) => {
-        const bounds = card.getBoundingClientRect();
-        const x = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
-        const y = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
-        card.style.setProperty('--pointer-x', `${x}%`);
-        card.style.setProperty('--pointer-y', `${y}%`);
-      };
-      const leave = () => {
-        card.style.removeProperty('--pointer-x');
-        card.style.removeProperty('--pointer-y');
-      };
-      card.addEventListener('pointermove', move);
-      card.addEventListener('pointerleave', leave);
-      pointerHandlers.push([card, move, leave]);
-    });
-
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
+
     return () => {
       revealObserver.disconnect();
       sectionObserver.disconnect();
       window.removeEventListener('scroll', updateProgress);
-      pointerHandlers.forEach(([card, move, leave]) => {
-        card.removeEventListener('pointermove', move);
-        card.removeEventListener('pointerleave', leave);
-      });
     };
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    const closeOnOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) setMenuOpen(false);
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+    };
+  }, [menuOpen]);
+
   const scrollToSection = (id) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    window.history.replaceState(null, '', `#${id}`);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const submitForm = (event) => {
@@ -132,17 +165,17 @@ export default function HomePage() {
     const email = data.get('email')?.trim();
     const message = data.get('message')?.trim();
     if (!name || !email || !message) {
-      setFormStatus({ type: 'error', text: 'Mohon isi semua bidang yang diperlukan sebelum mengirim.' });
+      setFormStatus({ type: 'error', text: 'Mohon isi semua bidang yang diperlukan.' });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setFormStatus({ type: 'error', text: 'Format alamat email tidak valid. Silakan periksa kembali.' });
+      setFormStatus({ type: 'error', text: 'Format email belum valid. Silakan periksa kembali.' });
       return;
     }
     setIsSending(true);
     setFormStatus(null);
     window.setTimeout(() => {
-      setFormStatus({ type: 'success', text: `Terima kasih banyak, ${name}! Pesan Anda telah berhasil dikirim. Saya akan segera menghubungi Anda melalui ${email}.` });
+      setFormStatus({ type: 'success', text: `Terima kasih, ${name}. Pesan Anda berhasil disimulasikan dan akan ditindaklanjuti melalui ${email}.` });
       setIsSending(false);
       form.reset();
     }, 800);
@@ -151,37 +184,62 @@ export default function HomePage() {
   return (
     <>
       <a className="skip-link" href="#main-content">Lewati ke konten utama</a>
-      <header>
-        <div className="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar" /></div>
-        <nav>
-          <button className="logo" onClick={() => scrollToSection('hero')}>Daffa Zubair Rabbani</button>
-          <ul id="nav-menu" className={menuOpen ? 'active' : ''}>
-            {navItems.map(([id, label]) => <li key={id}><button className={activeSection === id ? 'active' : ''} onClick={() => scrollToSection(id)}>{label}</button></li>)}
-          </ul>
-          <div className="nav-actions">
-            <button id="theme-toggle" aria-label={darkTheme ? 'Ganti ke Tema Terang' : 'Ganti ke Tema Gelap'} title="Beralih Tema" onClick={() => setDarkTheme((value) => !value)}><i className={`fa-solid ${darkTheme ? 'fa-sun' : 'fa-moon'}`} /></button>
-            <button id="menu-toggle" className="menu-toggle" aria-label="Buka Menu Navigasi" aria-expanded={menuOpen} aria-controls="nav-menu" onClick={() => setMenuOpen((value) => !value)}><i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'}`} /></button>
+      <header className="site-header">
+        <div className="header-inner" ref={menuRef}>
+          <button className="logo" onClick={() => scrollToSection('hero')} aria-label="Kembali ke Beranda"><span>DQ</span><strong>Daffa<span className="logo-dot">.</span></strong></button>
+          <nav aria-label="Navigasi utama">
+            <ul id="main-navigation" className={menuOpen ? 'nav-list is-open' : 'nav-list'}>
+              {navItems.map(([id, label]) => <li key={id}><button className={activeSection === id ? 'nav-link active' : 'nav-link'} onClick={() => scrollToSection(id)}>{label}</button></li>)}
+            </ul>
+          </nav>
+          <div className="header-actions">
+            <button className="icon-button" aria-label={darkTheme ? 'Aktifkan tema terang' : 'Aktifkan tema gelap'} title="Ganti tema" onClick={() => setDarkTheme((value) => !value)}><i className={darkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon'} aria-hidden="true" /></button>
+            <button className="icon-button menu-button" aria-label={menuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen((value) => !value)}><i className={menuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'} aria-hidden="true" /></button>
           </div>
-        </nav>
+        </div>
+        <div className="scroll-progress" aria-hidden="true"><span /></div>
       </header>
 
       <main id="main-content">
-        <section id="hero"><div className="hero-content"><h1>Halo, Saya Daffa Zubair Rabbani</h1><p>Seorang Web &amp; IoT Developer yang bersemangat dalam membangun aplikasi web modern, sistem mobile, dan integrasi perangkat cerdas.</p><button className="button" onClick={() => scrollToSection('portfolio')}><i className="fa-solid fa-briefcase" /> Lihat Karya Saya</button></div></section>
+        <section id="hero" className="hero-section">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="container hero-content">
+            <p className="eyebrow"><span className="status-dot" /> Web & IoT Developer <span className="mono">/ 2025</span></p>
+            <h1>Membangun <em>solusi digital</em><br />yang terasa nyata.</h1>
+            <p className="hero-summary">Saya Daffa Zubair Rabbani. Mengubah ide menjadi pengalaman web, aplikasi, dan perangkat cerdas yang berguna.</p>
+            <div className="hero-actions">
+              <button className="button button-primary" onClick={() => scrollToSection('portfolio')}>Lihat karya <ArrowIcon /></button>
+              <button className="button button-ghost" onClick={() => scrollToSection('contact')}>Mari terhubung <i className="fa-solid fa-arrow-down" aria-hidden="true" /></button>
+            </div>
+            <div className="hero-meta"><span>Berbasis di Bekasi, Indonesia</span><span className="meta-line" /><span className="mono">Available for collaboration</span></div>
+          </div>
+        </section>
 
-        <section id="about" className="container"><h2>Tentang Saya</h2><div className="about-content"><img src="/images/FOTOO%20GES.jpg" alt="Foto Daffa Zubair Rabbani" className="profile-photo" loading="lazy" /><div><p>Lulusan Teknik Komputer Jaringan dari SMK Yadika 13, saya adalah mahasiswa aktif di Politeknik Negeri Jember yang berdedikasi dalam bidang teknologi informasi. Saya memiliki ketertarikan mendalam pada pengembangan perangkat lunak multi-platform (Web &amp; Mobile) serta integrasi perangkat keras berbasis Internet of Things (IoT).</p><p>Selama praktik kerja 4 bulan di BKPSDM Kota Bekasi, saya mengasah kemampuan kolaborasi tim, ketelitian tata kelola data digital, dan komunikasi publik yang responsif. Saya adalah pribadi pembelajar cepat (*fast learner*), gigih menyelesaikan masalah, dan selalu termotivasi menciptakan solusi teknologi yang aplikatif.</p><a href="/files/CV_Daffa_Zubair_Rabbani.pdf" download="CV_Daffa_Zubair_Rabbani.pdf" className="button-small"><i className="fa-solid fa-download" /> Download CV Saya</a></div></div></section>
+        <section id="about" className="section section-sunken">
+          <div className="container about-layout">
+            <div className="section-heading reveal"><p className="eyebrow">01 / Tentang Saya</p><h2>Teknologi yang<br /><em>punya tujuan.</em></h2></div>
+            <div className="about-content reveal">
+              {/* PLACEHOLDER: ganti foto profil pada public/images/FOTOO GES.jpg bila diperlukan. */}
+              <img src="/images/FOTOO%20GES.jpg" alt="Foto Daffa Zubair Rabbani" className="profile-photo" loading="lazy" />
+              <div className="about-copy"><p className="lead">Lulusan Teknik Komputer Jaringan dan mahasiswa Teknik Informatika yang senang berada di antara dunia software dan hardware.</p><p>Saya mengeksplorasi pengembangan web, aplikasi mobile, dan Internet of Things untuk membuat solusi yang aplikatif. Pengalaman PKL di BKPSDM Kota Bekasi membentuk cara kerja yang teliti, kolaboratif, dan responsif terhadap kebutuhan pengguna.</p><a className="text-link" href="/files/CV_Daffa_Zubair_Rabbani.pdf" download="CV_Daffa_Zubair_Rabbani.pdf">Download CV <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a></div>
+            </div>
+          </div>
+        </section>
 
-        <section id="skills" className="container"><h2>Keahlian</h2><div className="skills-grid">{skillGroups.map((group) => <div className="skill-category" key={group.title}><h3>{group.title}</h3><ul>{group.skills.map(([icon, skill]) => <li key={skill}><span className={icon} /> {skill}</li>)}</ul></div>)}</div></section>
+        <section id="skills" className="section">
+          <div className="container"><div className="section-heading centered reveal"><p className="eyebrow">02 / Keahlian</p><h2>Alat yang saya<br /><em>gunakan setiap hari.</em></h2></div><div className="skills-grid">{skillGroups.map((group) => <article className="skill-card reveal" key={group.title}><div className="card-topline"><span className="mono">{group.index}</span><i className={`fa-solid ${group.icon}`} aria-hidden="true" /></div><h3>{group.title}</h3><ul>{group.skills.map((skill) => <li key={skill}><span className="list-dot" />{skill}</li>)}</ul></article>)}</div></div>
+        </section>
 
-        <section id="experience" className="container"><h2>Pengalaman</h2><div className="experience-item"><div className="experience-header"><h3>BKPSDM (Badan Kepegawaian Dan Pengembangan Sumber Daya Manusia) Kota Bekasi</h3><span className="experience-badge">4 Bulan Magang</span></div><p><strong>Praktek Kerja Lapangan (PKL)</strong> | 2022 – 2023 (4 Bulan)</p><ul><li><strong>Pelayanan Tamu &amp; Komunikasi:</strong> Melakukan penerimaan tamu dinas dan memberikan respon informasi yang profesional serta ramah setiap harinya.</li><li><strong>Manajemen Surat Masuk:</strong> Memproses pencatatan, klasifikasi, dan penginputan data surat kedinasan masuk ke sistem registrasi secara teliti.</li><li><strong>Manajemen Surat Keluar:</strong> Bertanggung jawab atas verifikasi data, pencatatan nomor agenda, dan distribusi surat kedinasan keluar.</li><li><strong>Pengolahan Data Digital:</strong> Mengelola rekapitulasi data administrasi kepegawaian ke dalam Microsoft Excel secara akurat dan tepat waktu.</li></ul></div></section>
+        <section id="experience" className="section section-sunken"><div className="container narrow"><div className="section-heading centered reveal"><p className="eyebrow">03 / Pengalaman</p><h2>Belajar dari<br /><em>lapangan.</em></h2></div><article className="timeline-card reveal"><div className="timeline-marker"><span /></div><div className="timeline-main"><div className="card-topline"><span className="mono">2022 - 2023</span><span className="pill">4 BULAN MAGANG</span></div><h3>BKPSDM Kota Bekasi</h3><p className="role">Praktek Kerja Lapangan</p><p>Menangani pelayanan tamu, manajemen surat masuk dan keluar, serta pengolahan data administrasi kepegawaian secara akurat menggunakan Microsoft Excel.</p></div></article></div></section>
 
-        <section id="education" className="container"><h2>Edukasi</h2><div className="education-item"><h3>Teknik Informatika</h3><p><strong>Politeknik Negeri Jember</strong> | 2024 - Sekarang</p><p>Fokus studi pada rekayasa perangkat lunak, algoritma, pemrograman multi-paradigma, dan sistem basis data. Berpengalaman dalam kolaborasi proyek tim untuk pembuatan aplikasi berbasis web, mobile, dan sistem pintar.</p></div><div className="education-item"><h3>Teknik Komputer dan Jaringan</h3><p><strong>SMK Yadika 13</strong> | 2021 - 2024</p><p>Mempelajari arsitektur jaringan komputer (LAN/WAN), perakitan &amp; troubleshooting PC, konfigurasi sistem operasi server, dan logika dasar pemrograman.</p></div></section>
+        <section id="education" className="section"><div className="container"><div className="section-heading reveal"><p className="eyebrow">04 / Edukasi</p><h2>Fondasi untuk<br /><em>terus bertumbuh.</em></h2></div><div className="education-list"><article className="education-item reveal"><span className="mono">01</span><div><h3>Teknik Informatika</h3><p>Politeknik Negeri Jember</p><small>2024 - Sekarang <span>/</span> Rekayasa perangkat lunak, algoritma, basis data</small></div></article><article className="education-item reveal"><span className="mono">02</span><div><h3>Teknik Komputer dan Jaringan</h3><p>SMK Yadika 13</p><small>2021 - 2024 <span>/</span> Jaringan komputer, server, dan troubleshooting</small></div></article></div></div></section>
 
-        <section id="portfolio" className="container"><h2>Portofolio</h2><p className="section-subtitle">Kombinasi proyek nyata yang mencakup pengembangan web, aplikasi mobile, dan integrasi perangkat cerdas (IoT).</p><div className="portfolio-grid">{projects.map(([image, alt, badgeClass, badge, title, description, href, label]) => <div className="portfolio-item" key={title}><div className="portfolio-img-wrapper"><img src={`/${image}`} alt={alt} loading="lazy" /><span className={`project-badge ${badgeClass}`}>{badge}</span></div><div className="portfolio-content"><h3>{title}</h3><p>{description}</p><div className="buttons-wrapper"><a href={href} target="_blank" rel="noopener noreferrer" className="button-small github-link"><i className="fa-brands fa-github" /> {label}</a></div></div></div>)}</div></section>
+        <section id="portfolio" className="section section-sunken"><div className="container"><div className="section-heading portfolio-heading reveal"><div><p className="eyebrow">05 / Portofolio</p><h2>Beberapa hal yang<br /><em>pernah saya bangun.</em></h2></div><p className="section-note">Proyek nyata, eksperimen, dan sistem yang dirancang untuk memecahkan masalah.</p></div><div className="projects-grid">{projects.map((project, index) => <article className="project-card reveal" key={project.title}><div className="project-image"><img src={project.image} alt={project.alt} loading="lazy" /><span className="project-index mono">0{index + 1}</span><span className="project-category">{project.category}</span></div><div className="project-body"><h3>{project.title}</h3><p>{project.description}</p><a className="project-link" href={project.href} target="_blank" rel="noopener noreferrer">Lihat repositori <ArrowIcon /></a></div></article>)}</div></div></section>
 
-        <section id="contact" className="container"><h2>Kontak</h2><p>Tertarik untuk berkolaborasi dalam proyek web, mobile, atau IoT? Jangan ragu untuk menghubungi saya melalui kontak di bawah ini atau kirimkan pesan langsung!</p><div className="contact-info"><p><span className="fa-solid fa-phone" /><a href="tel:+6285282917637">+62 8528-2917-637</a></p><p><span className="fa-solid fa-envelope" /><a href="mailto:daffazubairr@gmail.com">daffazubairr@gmail.com</a></p><p><span className="fa-solid fa-location-dot" /><span>Tambun Selatan, Kabupaten Bekasi, Jawa Barat</span></p></div><form id="contact-form" onSubmit={submitForm} noValidate><div className="form-group"><label htmlFor="name" className="visually-hidden">Nama Lengkap</label><input type="text" name="name" id="name" placeholder="Nama Lengkap Anda" required /></div><div className="form-group"><label htmlFor="email" className="visually-hidden">Email</label><input type="email" name="email" id="email" placeholder="Alamat Email Anda" required /></div><div className="form-group"><label htmlFor="message" className="visually-hidden">Pesan</label><textarea name="message" id="message" rows="5" placeholder="Tuliskan Pesan atau Rencana Proyek Anda di Sini..." required /></div><button type="submit" className="button" disabled={isSending}><i className={`fa-solid ${isSending ? 'fa-circle-notch fa-spin' : 'fa-paper-plane'}`} /> {isSending ? 'Mengirim...' : 'Kirim Pesan'}</button>{formStatus && <div className={`form-status ${formStatus.type}`} role="alert" aria-live="polite">{formStatus.text}</div>}</form></section>
+        <section id="contact" className="section contact-section"><div className="container contact-layout"><div className="section-heading reveal"><p className="eyebrow">06 / Kontak</p><h2>Mari buat sesuatu<br /><em>yang berarti.</em></h2><p className="contact-intro">Punya ide, proyek, atau sekadar ingin bertukar pikiran? Saya terbuka untuk mendengar dan berkolaborasi.</p><div className="contact-details"><a href="mailto:daffazubairr@gmail.com"><i className="fa-solid fa-envelope" aria-hidden="true" /> daffazubairr@gmail.com</a><a href="tel:+6285282917637"><i className="fa-solid fa-phone" aria-hidden="true" /> +62 8528-2917-637</a><span><i className="fa-solid fa-location-dot" aria-hidden="true" /> Tambun Selatan, Bekasi</span></div></div><form className="contact-form reveal" onSubmit={submitForm} noValidate><div className="form-header"><span className="mono">DROP A LINE</span><span className="form-status-dot" /></div><div className="form-group"><label htmlFor="name">Nama lengkap</label><input type="text" name="name" id="name" placeholder="Nama Anda" required /></div><div className="form-group"><label htmlFor="email">Alamat email</label><input type="email" name="email" id="email" placeholder="nama@email.com" required /></div><div className="form-group"><label htmlFor="message">Pesan</label><textarea name="message" id="message" rows="4" placeholder="Ceritakan sedikit tentang rencana Anda..." required /></div><button type="submit" className="button button-primary form-submit" disabled={isSending}>{isSending ? 'Mengirim...' : 'Kirim pesan'} <i className={isSending ? 'fa-solid fa-circle-notch fa-spin' : 'fa-solid fa-arrow-up-right-from-square'} aria-hidden="true" /></button>{formStatus && <div className={`form-status ${formStatus.type}`} role="alert" aria-live="polite">{formStatus.text}</div>}</form></div></section>
       </main>
 
-      <footer><div className="social-links"><a href="https://www.linkedin.com/in/daffa-zubair-rabbani-659a3b316/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn"><i className="fa-brands fa-linkedin" /></a><a href="https://github.com/daffazub" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub"><i className="fa-brands fa-github" /></a><a href="mailto:daffazubairr@gmail.com" aria-label="Kirim Email"><i className="fa-solid fa-envelope" /></a></div><p>&copy; 2025 Daffa Zubair Rabbani. Semua Hak Dilindungi.</p></footer>
+      <footer className="site-footer"><div className="container footer-inner"><div><button className="logo footer-logo" onClick={() => scrollToSection('hero')}><span>DQ</span><strong>Daffa<span className="logo-dot">.</span></strong></button><p>Web & IoT Developer</p></div><div className="footer-links"><a href="https://www.linkedin.com/in/daffa-zubair-rabbani-659a3b316/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowIcon /></a><a href="https://github.com/daffazub" target="_blank" rel="noopener noreferrer">GitHub <ArrowIcon /></a><a href="mailto:daffazubairr@gmail.com">Email <ArrowIcon /></a></div><p className="copyright">(c) {new Date().getFullYear()} Daffa Zubair Rabbani</p></div></footer>
     </>
   );
 }
