@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
-const PORT = process.env.PORT || 3000;
+let currentPort = Number(process.env.PORT) || 3000;
+let attempts = 0;
+const MAX_ATTEMPTS = 15;
 const BASE_DIR = __dirname;
 
 const MIME_TYPES = {
@@ -23,7 +25,21 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  let reqUrl = decodeURI(req.url.split('?')[0]);
+  req.on('error', (err) => {
+    console.error('Request error:', err.message);
+  });
+
+  res.on('error', (err) => {
+    console.error('Response error:', err.message);
+  });
+
+  let reqUrl;
+  try {
+    reqUrl = decodeURI(req.url.split('?')[0]);
+  } catch (e) {
+    reqUrl = req.url.split('?')[0];
+  }
+
   if (reqUrl === '/') {
     reqUrl = '/index.html';
   }
@@ -48,16 +64,42 @@ const server = http.createServer((req, res) => {
     });
 
     const stream = fs.createReadStream(filePath);
+    stream.on('error', (streamErr) => {
+      console.error('Stream error:', streamErr.message);
+      if (!res.headersSent) {
+        res.writeHead(500);
+      }
+      res.end();
+    });
     stream.pipe(res);
   });
 });
 
-server.listen(PORT, () => {
-  const url = `http://localhost:${PORT}`;
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    attempts++;
+    if (attempts <= MAX_ATTEMPTS) {
+      currentPort++;
+      console.log(`Port ${currentPort - 1} sedang digunakan. Mencoba port ${currentPort}...`);
+      server.listen(currentPort);
+    } else {
+      console.error('Gagal menemukan port yang kosong setelah beberapa percobaan.');
+    }
+  } else {
+    console.error('Server error:', err);
+  }
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+server.listen(currentPort, () => {
+  const actualPort = server.address().port;
+  const url = `http://localhost:${actualPort}`;
   console.log(`Server portofolio berjalan di: ${url}`);
   console.log(`Tekan Ctrl+C untuk menghentikan server.`);
 
   // Buka otomatis di browser default Windows
   exec(`start ${url}`);
 });
-

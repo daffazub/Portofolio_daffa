@@ -190,7 +190,66 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav(); // Panggil sekali saat load
 
-    // --- 5. Penanganan Form Kontak & Validasi ---
+    // --- 5. Progress Scroll ---
+    const scrollProgressBar = document.getElementById('scroll-progress-bar');
+
+    const updateScrollProgress = () => {
+        if (!scrollProgressBar) return;
+
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+        scrollProgressBar.style.width = `${Math.min(progress, 100)}%`;
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
+
+    // --- 6. Animasi Elemen Saat Masuk Viewport ---
+    const revealElements = document.querySelectorAll(
+        'main section:not(#hero) h2, .about-content, .skill-category, .experience-item, .education-item, .portfolio-item, #contact > p, .contact-info, #contact-form, .social-links'
+    );
+
+    revealElements.forEach((element, index) => {
+        element.classList.add('reveal');
+        element.style.setProperty('--reveal-delay', `${(index % 4) * 90}ms`);
+    });
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14, rootMargin: '0px 0px -40px' });
+
+        revealElements.forEach((element) => revealObserver.observe(element));
+    } else {
+        revealElements.forEach((element) => element.classList.add('is-visible'));
+    }
+
+    // --- 7. Highlight Card Mengikuti Kursor ---
+    const interactiveCards = document.querySelectorAll('.skill-category, .experience-item, .education-item, .portfolio-item');
+
+    interactiveCards.forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+            const bounds = card.getBoundingClientRect();
+            const x = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
+            const y = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
+
+            card.style.setProperty('--pointer-x', `${x}%`);
+            card.style.setProperty('--pointer-y', `${y}%`);
+        });
+
+        card.addEventListener('pointerleave', () => {
+            card.style.removeProperty('--pointer-x');
+            card.style.removeProperty('--pointer-y');
+        });
+    });
+
+    // --- 8. Penanganan Form Kontak & Validasi ---
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
 
@@ -257,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. Mencegah Munculnya Kursor Ketik / Seleksi Teks Saat Teks Diklik ---
+    // --- 9. Mencegah Munculnya Kursor Ketik / Seleksi Teks Saat Teks Diklik ---
     document.addEventListener('selectstart', (e) => {
         // Izinkan seleksi teks hanya di dalam bidang formulir input & textarea
         if (!e.target.closest('input, textarea')) {
