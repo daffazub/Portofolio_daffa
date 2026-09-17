@@ -151,8 +151,8 @@ em { color: var(--accent); font-style: normal; }
 .project-body p { max-width: 570px; margin: 0 0 20px; font-size: .9rem; }
 .project-link { font-size: .8rem; }
 
-.contact-section { background: var(--text-primary); color: var(--text-secondary); }
-.contact-section h2 { color: var(--bg); }
+.contact-section { background: var(--bg-sunken); color: var(--text-secondary); }
+.contact-section h2 { color: var(--text-primary); }
 .contact-section .eyebrow { color: var(--signal); }
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
 .contact-intro { max-width: 430px; margin: 0 0 34px; }
@@ -176,9 +176,9 @@ em { color: var(--accent); font-style: normal; }
 .footer-logo { margin-bottom: 8px; }
 .footer-inner p { margin: 0; color: var(--text-secondary); font-size: .75rem; }
 .footer-links { display: flex; gap: 25px; }
-.footer-links a { color: var(--text-secondary); font-size: .78rem; font-weight: 700; }
-.footer-links a:hover { color: var(--accent); }
-.footer-links i { margin-left: 4px; font-size: .65rem; }
+.footer-links a { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; transition: color .2s ease, border-color .2s ease, background-color .2s ease, transform .2s ease; }
+.footer-links a:hover { border-color: var(--accent-strong); background: var(--bg-raised); color: var(--accent-strong); transform: translateY(-2px); }
+.footer-links i { font-size: 1rem; }
 .copyright { text-align: right; }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
