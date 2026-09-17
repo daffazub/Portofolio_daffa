@@ -13,7 +13,7 @@
   --success: #1E8A56;
   --shadow: rgba(18, 21, 28, 0.08);
   --scroll-progress: 0%;
-  --display: 'Space Grotesk', sans-serif;
+  --display: 'Inter', sans-serif;
   --body: 'Inter', sans-serif;
   --mono: 'JetBrains Mono', monospace;
 }
@@ -69,7 +69,7 @@ img { display: block; max-width: 100%; }
 .scroll-progress { height: 2px; background: var(--border); }
 .scroll-progress span { display: block; width: var(--scroll-progress); height: 100%; background: var(--signal); transition: width .1s linear; }
 
-h1, h2, h3 { margin: 0; color: var(--text-primary); font-family: var(--display); letter-spacing: -.045em; line-height: 1.08; }
+h1, h2, h3 { margin: 0; color: var(--text-primary); font-family: var(--display); letter-spacing: -.025em; line-height: 1.12; }
 h1 { max-width: 850px; font-size: clamp(3.25rem, 8vw, 6.9rem); }
 h2 { font-size: clamp(2.5rem, 5vw, 4.4rem); }
 h3 { font-size: 1.2rem; }
