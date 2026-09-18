@@ -60,7 +60,7 @@ const projects = [
     href: 'https://github.com/daffazub',
   },
   {
-    image: '/images/Login%20Sistem%20Parkir.jpg',
+    image: '/images/login-sistem-parkir.jpg',
     alt: 'Preview sistem parkir berbasis RFID',
     category: 'IOT',
     title: 'Sistem Parkir Berbasis RFID',
@@ -68,7 +68,7 @@ const projects = [
     href: 'https://github.com/daffazub/Parkiran_RFID.git',
   },
   {
-    image: '/images/Perjalanan%20dinas.jpg',
+    image: '/images/perjalanan-dinas.jpg',
     alt: 'Preview sistem perjalanan dinas RAB dan LPJ',
     category: 'WEB',
     title: 'Sistem Perjalanan Dinas - RAB & LPJ',
@@ -219,8 +219,7 @@ export default function HomePage() {
           <div className="container about-layout">
             <div className="section-heading reveal"><p className="eyebrow">01 / Tentang Saya</p><h2>Teknologi yang<br /><em>punya tujuan.</em></h2></div>
             <div className="about-content reveal">
-              {/* PLACEHOLDER: ganti foto profil pada public/images/FOTOO GES.jpg bila diperlukan. */}
-              <img src="/images/FOTOO%20GES.jpg" alt="Foto Daffa Zubair Rabbani" className="profile-photo" loading="lazy" />
+              <img src="/images/foto-profil.jpg" alt="Foto Daffa Zubair Rabbani" className="profile-photo" loading="lazy" />
               <div className="about-copy"><p className="lead">Lulusan SMK Teknik Komputer dan Jaringan serta mahasiswa aktif Teknik Informatika yang senang berada di antara dunia software dan hardware.</p><p>Saya mengeksplorasi pengembangan web, aplikasi mobile, dan Internet of Things untuk membuat solusi yang aplikatif. Pengalaman PKL di BKPSDM Kota Bekasi membentuk cara kerja yang teliti, kolaboratif, dan responsif terhadap kebutuhan pengguna.</p><a className="text-link" href="/files/CV_Daffa_Zubair_Rabbani.pdf" download="CV_Daffa_Zubair_Rabbani.pdf">Download CV <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a></div>
             </div>
           </div>
